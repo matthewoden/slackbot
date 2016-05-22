@@ -1,0 +1,26 @@
+{
+  "name": "slackbots",
+  "version": "1.0.0",
+  "description": "Experiments with the slack api.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.test.js | faucet",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matthewoden/slackbot.git"
+  },
+  "author": "matthewoden",
+  "license": "WTFPL2",
+  "bugs": {
+    "url": "https://github.com/matthewoden/slackbot/issues"
+  },
+  "homepage": "https://github.com/matthewoden/slackbot#readme",
+  "devDependencies": {
+    "tap": "^5.7.1"
+  },
+  "dependencies": {
+    "slackbots": "^0.5.1"
+  }
+}
