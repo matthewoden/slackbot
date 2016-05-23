@@ -20,9 +20,9 @@ wonder.on('message', (action) => {
   utils.onMention(action, WONDER.SLACK_BOT_ID, wonderResponse)
 })
 
-function wonderResponse(response) {
+function wonderResponse(response, channel) {
   const rodResult = utils.random.integer(1,100)
-  return wonder.postMessageToChannel('general', findRodResult(rodResult), params);
+  return wonder.postMessage(channel, findRodResult(rodResult), params);
 }
 
 function findRodResult(int){

@@ -23,13 +23,13 @@ mathbear.on('message', (action) => {
 })
 
 
-function mathbearResponse(response){
+function mathbearResponse(response, channel){
   // remove all clutter from the text.
   const responseDigits = response.replace(/(\<(.*?)\>)|\D/g,'')
   const parseRemainder = parseInt(responseDigits, 10)
   //if we get a usable result, mathbear will respond
   if (Number.isInteger(parseRemainder)){
     console.log('MATHBEAR IS MATHING', parseRemainder)
-    mathbear.postMessageToChannel('general', utils.random.integer(1,parseRemainder), params);
+    mathbear.postMessage(channel, utils.random.integer(1,parseRemainder), params);
   }
 }
