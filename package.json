@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "tap test/*.test.js | faucet",
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,11 @@
   },
   "homepage": "https://github.com/matthewoden/slackbot#readme",
   "devDependencies": {
+    "nodemon": "^1.9.2",
     "tap": "^5.7.1"
   },
   "dependencies": {
+    "random-js": "^1.0.8",
     "slackbots": "^0.5.1"
   }
 }
