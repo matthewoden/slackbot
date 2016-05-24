@@ -2,6 +2,7 @@
 //load environment variables
 require('dotenv').config();
 const config = require('./config');
+//test
 //initialize bots
 require('./src/mathbear')(config.bots.mathbear);
 require('./src/wonder')(config.bots.botOfWonder);
