@@ -1,4 +1,7 @@
 #!/usr/bin/env node
-//bot constants
-require('./src/mathbear');
-require('./src/wonder');
+//load environment variables
+require('dotenv').config();
+const config = require('./config');
+//initialize bots
+require('./src/mathbear')(config.bots.mathbear);
+require('./src/wonder')(config.bots.botOfWonder);

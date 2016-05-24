@@ -1,21 +1,12 @@
 const Random = require('random-js');
-
-function botIsMentioned (slackMessage, botId) { return slackMessage.indexOf(botId) > -1 }
-
 // creating a random instance to use across bots.
 exports.random = new Random(Random.engines.mt19937().autoSeed());
+// filter for actions that aren't mentions of this bot.
+exports.onlyMentions = (action, id, callback) =>
+   action.type === 'message' && action.text.indexOf(id) > -1 ? callback(action) : false
 
-exports.onMention = (action, id, callback) => {
-  // lots of subactions for message.
-  switch (action.type) {
-    // handle just a regular message
-    case 'message':
-      if(action.text && botIsMentioned(action.text, id)){
-        return callback(action.text, action.channel)
-      }
-      break;
-
-    default:
-      break;
-  }
+exports.getDigits = (text) => {
+  const maybeDigitString = text.replace(/(\<(.*?)\>)|\D/g,'').substring(0,15)
+  const maybeInteger = parseInt(maybeDigitString, 10)
+  return Number.isInteger(maybeInteger) ? maybeInteger : false;
 }

@@ -1,35 +1,29 @@
-const SlackBot = require('slackbots');
-const config = require('../config');
+const Slackbot = require('slackbots');
 const utils = require('./utils');
+const onlyMentions = utils.onlyMentions;
+const getDigits = utils.getDigits;
 
-//mathbear consts
-const MATHBEAR = config.BOTS[0];
-// create mathbear bot
-const mathbear = new SlackBot({
-    token: MATHBEAR.SLACK_API_TOKEN,
-    name: MATHBEAR.SLACK_BOT_NAME
-});
-
-const params = {
-  as_user:true
+function response(bot, action) {
+  const digits = getDigits(action.text)
+  const response = digits ? utils.random.integer(1, digits) : 'Grrr..';
+  bot.postMessage(action.channel, response, { as_user:true });
 }
 
-mathbear.on('start', () => {
-  console.log('starting mathbear!')
-})
 
-mathbear.on('message', (action) => {
-  utils.onMention(action,MATHBEAR.SLACK_BOT_ID, mathbearResponse)
-})
+function directResponse(bot, action) {
+  bot.getChatId('matthewoden').then(channel => { console.log('channel', channel)});
+}
 
-
-function mathbearResponse(response, channel){
-  // remove all clutter from the text.
-  const responseDigits = response.replace(/(\<(.*?)\>)|\D/g,'')
-  const parseRemainder = parseInt(responseDigits, 10)
-  //if we get a usable result, mathbear will respond
-  if (Number.isInteger(parseRemainder)){
-    console.log('MATHBEAR IS MATHING', parseRemainder)
-    mathbear.postMessage(channel, utils.random.integer(1,parseRemainder), params);
-  }
+module.exports = (config) => {
+  const token = config.token;
+  const name = config.name;
+  const uuid = config.uuid;
+  const bot = new Slackbot({ token, name });
+  const mentionAction = (action) => response(bot, action);
+  const directMentionAction = (action) => directResponse(bot, action)
+  bot.on('start', () => { console.log(`starting ${name}!`) })
+  bot.on('message', action => {
+    console.log(action)
+    onlyMentions(action, uuid, mentionAction)
+  })
 }

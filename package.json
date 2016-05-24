@@ -23,6 +23,7 @@
     "tap": "^5.7.1"
   },
   "dependencies": {
+    "dotenv": "^2.0.0",
     "random-js": "^1.0.8",
     "slackbots": "^0.5.1"
   }
