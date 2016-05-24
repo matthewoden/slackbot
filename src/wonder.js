@@ -5,13 +5,16 @@ const getDigits = utils.getDigits;
 const onlyMentions = utils.onlyMentions;
 
 function response (bot, action) {
-  const result = getDigits(action.text)
-  return bot.postMessage(action.channel, findRodResult(result), { as_user: true });
+  const number = getDigits(action.text)
+  const result = number ? findRodResult(number) : findRodResult()
+  return bot.postMessage(action.user, findRodResult(result), { as_user: true });
 }
 
-function findRodResult(int){
+function findRodResult(int) {
   switch (true) {
-    case (int <= 05):
+    case (!Number.isInteger(int)):
+      return findRodResult(utils.random.integer(1,100));
+    case (int <= 05 && int > 0):
       return 'Target affected by slow for 10 rounds (Will DC 15 negates).'
     case (int <= 10):
       return 'Faerie fire surrounds the target.'
