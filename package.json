@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "tap test/*.test.js | faucet",
-    "start": "pm2 start index.js --name=pfbot",
+    "start": "node index.js",
     "start:dev": "pm2 start index.js --name=pfbot --watch",
-    "stop": "pm2 start index.js --name=pfbot"
+    "stop": "pm2 stop pfbot",
+    "restart": "pm2 restart pfbot"
   },
   "repository": {
     "type": "git",
