@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tap test/*.test.js | faucet",
-    "start": "node index.js",
+    "start": "pm2 startOrReload ecosystem.json",
     "start:dev": "pm2 start index.js --name=pfbot --watch",
     "stop": "pm2 stop pfbot",
     "restart": "pm2 restart pfbot"
