@@ -6,6 +6,7 @@ exports.random = new Random(Random.engines.mt19937().autoSeed());
 exports.onlyMentions = (action, id, callback) =>
    action.type === 'message' && action.text.indexOf(id) > -1 ? callback(action) : false
 
+// get digits from a given string
 exports.getDigits = (text) => {
   const maybeDigitString = text.replace(/(\<(.*?)\>)|\D/g,'').substring(0,15)
   const maybeInteger = parseInt(maybeDigitString, 10)
