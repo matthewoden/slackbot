@@ -1,9 +1,0 @@
-{
-  "apps" : [{
-    "name"      : "pfbot",
-    "script"    : "/var/www/pathfinder-bots/index.js",
-    "env": {
-      "PORT": "3000"
-    }
-  }]
-}
