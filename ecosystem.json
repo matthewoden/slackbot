@@ -2,5 +2,6 @@
   "apps" : [{
     "name"      : "pfbot",
     "script"    : "/var/www/pathfinder-bots/index.js",
+    "port"       : 3001
   }]
 }
