@@ -10,20 +10,14 @@ function response(bot, action) {
 }
 
 
-function directResponse(bot, action) {
-  bot.getChatId('matthewoden').then(channel => { console.log('channel', channel)});
-}
-
 module.exports = (config) => {
   const token = config.token;
   const name = config.name;
   const uuid = config.uuid;
   const bot = new Slackbot({ token, name });
   const mentionAction = (action) => response(bot, action);
-  const directMentionAction = (action) => directResponse(bot, action)
   bot.on('start', () => { console.log(`starting ${name}!`) })
   bot.on('message', action => {
-    console.log(action)
     onlyMentions(action, uuid, mentionAction)
   })
 }
