@@ -1,6 +1,6 @@
 {
   "apps" : [{
     "name"      : "pfbot",
-    "script"    : "index.js",
+    "script"    : "/var/www/pathfinder-bots/index.js",
   }]
 }
